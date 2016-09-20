@@ -1,0 +1,65 @@
+/*This program emulates a simple game of rock, paper, scissors. 
+ * 
+ * @author Tim Hodson
+ * @version 09202016
+ */
+
+package osu.cse1223;
+import java.util.Scanner;
+public class Project04 {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		String input, uChoice, myChoice;
+		int mChoice=0, urChoice=0; 
+		System.out.println("Welcome to Rock Paper Scissors!");
+		System.out.print("Please select one of [R/P/S]: ");
+		input = in.nextLine();
+		// This block of code takes the user's input and assigns it to rock, paper, scissors, or invalid (defaulting to rock). 
+		if (input.equals("R") || (input.equals("r"))) {   
+			uChoice = "Rock";
+			urChoice = 1;
+			System.out.println("You chose: " + uChoice);
+		}
+		else if (input.equals("P") || (input.equals("p"))){
+			uChoice = "Paper";
+			urChoice = 2;
+			System.out.println("You chose: " + uChoice);
+		}
+		else if (input.equals("S") || (input.equals("s"))){
+			uChoice = "Scissors";
+			urChoice = 3;
+			System.out.println("You chose: " + uChoice);
+		}
+		else {
+			uChoice = "Rock";
+			urChoice = 1;
+			System.out.println("Invalid Choice! Defaulting to Rock. ");
+		}
+		//This block of code randomly makes a choice for the computer. 
+		mChoice = (int)(3*Math.random())+1;
+		if (mChoice==1){
+			System.out.println("I chose: Rock");
+			myChoice = "Rock";
+		}
+		else if (mChoice == 2){
+			System.out.println("I chose: Paper");
+			myChoice = "Paper";
+		}
+		else {
+			System.out.println("I chose: Scissors" );
+			myChoice = "Scissors";
+		}
+		if (urChoice == mChoice){
+			System.out.print("A Tie!");
+		}
+		//This block of code determines if the user loses, depending on the 3 possible losing combinations. I build a win-lose chart in excel to identify the 3 combinations. 
+		else if (((urChoice == 1) && (mChoice == 2)) || ((urChoice == 2) && (mChoice == 3)) || ((urChoice == 3) && (mChoice == 1))){  
+			System.out.print(myChoice + " beats " + uChoice + " - you lose!");
+		}
+		else {
+			System.out.print(uChoice + " beats "+ myChoice + " - you win!");
+		}
+	
+}
+}
